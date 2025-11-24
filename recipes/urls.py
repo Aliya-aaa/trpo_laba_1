@@ -5,5 +5,5 @@ urlpatterns = [
     path('', views.recipe_list, name='recipe_list'),
     path('recipe/<int:recipe_id>/', views.recipe_detail, name='recipe_detail'),
     path('about/', views.about, name='about'),
-    path('search/', views.search_by_ingredient, name='search_by_ingredient'),  # ← новая строка
+    path('search/', views.search_by_ingredient, name='search_by_ingredient'),
 ]

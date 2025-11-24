@@ -8,14 +8,25 @@
     <link rel="stylesheet" href="{% static 'recipes/style.css' %}">
 </head>
 <body>
-    <nav>
-        <a href="{% url 'recipe_list' %}">Главная</a>
-        <a href="{% url 'about' %}">О проекте</a>
-    </nav>
+<nav>
+    <a href="{% url 'recipe_list' %}">Главная</a>
+    <a href="{% url 'about' %}">О проекте</a>
+    {% if user.is_authenticated %}
+    <span>Привет, {{ user.username }}!</span>
+    <!-- Вместо: <a href="{% url 'logout' %}">Выйти</a> -->
+<form method="post" action="{% url 'logout' %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" style="background: none; border: none; color: #007acc; cursor: pointer;">Выйти</button>
+</form>
+{% else %}
+    <a href="{% url 'login' %}">Войти</a> |
+    <a href="{% url 'register' %}">Регистрация</a>
+{% endif %}
+</nav>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
 </body>
 </html>
