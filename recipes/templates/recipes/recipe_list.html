@@ -1,0 +1,23 @@
+{% extends 'recipes/base.html' %}
+
+{% block title %}Рецепты{% endblock %}
+
+{% block content %}
+<h1>Рецепты</h1>
+
+{% if recipes %}
+    <div class="recipe-grid">
+        {% for recipe in recipes %}
+        <div class="recipe-card">
+            <h3><a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.title }}</a></h3>
+            {% if recipe.img %}
+                <img src="{{ recipe.img.url }}" alt="{{ recipe.title }}" class="recipe-img">
+            {% endif %}
+            <p class="recipe-time">{{ recipe.cooking_time }} мин</p>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Пока нет рецептов. <a href="/admin/">Добавьте через админку</a>.</p>
+{% endif %}
+{% endblock %}

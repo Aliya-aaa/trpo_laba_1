@@ -1,0 +1,32 @@
+{% extends 'recipes/base.html' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block content %}
+<div class="recipe-detail">
+    <h1>{{ recipe.title }}</h1>
+    <p class="recipe-time">{{ recipe.cooking_time }} минут</p>
+
+    {% if recipe.img %}
+        <img src="{{ recipe.img.url }}" alt="{{ recipe.title }}" class="main-image">
+    {% endif %}
+
+    <div class="ingredients-list">
+        <h2>Ингредиенты:</h2>
+        <ul>
+            {% for ri in recipe.recipe_ingredients.all %}
+                <li>{{ ri.quantity }} {{ ri.unit|default:"шт." }} {{ ri.ingredient.name }}</li>
+            {% empty %}
+                <li>Ингредиенты не указаны.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="instructions">
+        <h2>Инструкция:</h2>
+        <p>{{ recipe.description|linebreaks }}</p>
+    </div>
+
+    <a href="{% url 'recipe_list' %}" class="back-link">← Назад к рецептам</a>
+</div>
+{% endblock %}

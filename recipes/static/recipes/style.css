@@ -1,0 +1,121 @@
+/* Общие стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Навигация */
+nav {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+nav a {
+    text-decoration: none;
+    color: #007acc;
+    font-weight: bold;
+    margin-right: 20px;
+    font-size: 18px;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Заголовки */
+h1, h2 {
+    color: #222;
+}
+
+/* Карточка рецепта на главной */
+.recipe-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+.recipe-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    max-width: 320px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+.recipe-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.recipe-card h3 a {
+    color: #000;
+    text-decoration: none;
+}
+.recipe-card h3 a:hover {
+    text-decoration: underline;
+}
+.recipe-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: block;
+}
+.recipe-time {
+    font-weight: bold;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+.recipe-time::before {
+    content: "⏱️";
+    margin-right: 6px;
+}
+
+/* Страница рецепта */
+.recipe-detail h1 {
+    margin-bottom: 10px;
+}
+.recipe-detail .main-image {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: block;
+}
+.ingredients-list, .instructions {
+    margin: 20px 0;
+}
+.ingredients-list ul, .instructions p {
+    line-height: 1.6;
+}
+.ingredients-list li {
+    margin-bottom: 6px;
+}
+
+/* Кнопка "назад" */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007acc;
+    text-decoration: none;
+    font-weight: bold;
+}
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .recipe-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .recipe-card {
+        width: 100%;
+        max-width: 500px;
+    }
+}
