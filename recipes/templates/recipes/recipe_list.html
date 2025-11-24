@@ -5,6 +5,20 @@
 {% block content %}
 <h1>Рецепты</h1>
 
+<!-- Форма поиска -->
+<form method="get" action="{% url 'search_by_ingredient' %}" style="margin-bottom: 20px;">
+    <input type="text" name="q" placeholder="Поиск по ингредиенту (например: чеснок)"
+           value="{{ search_query }}" style="padding: 8px; width: 300px;">
+    <button type="submit" style="padding: 8px 12px; background: #007acc; color: white; border: none; cursor: pointer;">Найти</button>
+    {% if search_query %}
+        <a href="{% url 'recipe_list' %}" style="margin-left: 10px; color: #555; text-decoration: none;">×</a>
+    {% endif %}
+</form>
+
+{% if search_query %}
+    <h3>Результаты по запросу: "{{ search_query }}"</h3>
+{% endif %}
+
 {% if recipes %}
     <div class="recipe-grid">
         {% for recipe in recipes %}
@@ -18,6 +32,13 @@
         {% endfor %}
     </div>
 {% else %}
-    <p>Пока нет рецептов. <a href="/admin/">Добавьте через админку</a>.</p>
+    <p>
+        {% if search_query %}
+            Нет рецептов с ингредиентом "{{ search_query }}".
+            <a href="{% url 'recipe_list' %}">Показать все</a>.
+        {% else %}
+            Пока нет рецептов. <a href="/admin/">Добавьте через админку</a>.
+        {% endif %}
+    </p>
 {% endif %}
 {% endblock %}
