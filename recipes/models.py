@@ -1,9 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=100, unique=True)
-
     def __str__(self):
         return self.name
 
@@ -13,7 +13,7 @@ class Recipe(models.Model):
     cooking_time = models.PositiveIntegerField(help_text="В минутах")
     description = models.TextField()
     img = models.ImageField(upload_to='recipes/', blank=True, null=True)
-
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.title
 
@@ -23,6 +23,7 @@ class RecipeIngredient(models.Model):
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     unit = models.CharField(max_length=50)
     quantity = models.FloatField()
-
     def __str__(self):
         return f"{self.quantity} {self.unit} {self.ingredient.name}"
+
+

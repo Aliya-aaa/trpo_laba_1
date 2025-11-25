@@ -8,20 +8,88 @@ body {
 }
 
 nav {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    background: white;
+    padding: 16px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
 }
-nav a {
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-left a {
     text-decoration: none;
-    color: #007acc;
-    font-weight: bold;
-    margin-right: 20px;
+    color: var(--primary);
+    font-weight: 600;
     font-size: 18px;
+    margin-right: 24px;
+    transition: color 0.2s;
 }
-nav a:hover {
+.nav-left a:hover {
+    color: var(--primary-light);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 16px;
+}
+
+.nav-right span {
+    color: var(--text);
+}
+
+.nav-right a,
+.nav-right .logout-form button {
+    text-decoration: none;
+    color: var(--primary);
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.nav-right a:hover,
+.nav-right .logout-form button:hover {
     text-decoration: underline;
 }
+
+.nav-right .logout-form button:focus {
+    outline: none;
+}
+/* Кнопка "Выйти" — внешне как ссылка */
+.logout-button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline;
+    line-height: 1;
+}
+
+.logout-button:hover {
+    text-decoration: underline;
+}
+
+/* Убираем стандартный outline при фокусе (для чистоты вида) */
+.logout-button:focus {
+    outline: none;
+}
+
 
 h1, h2 {
     color: #222;

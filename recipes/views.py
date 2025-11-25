@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe, Ingredient
+from django.contrib.auth.decorators import login_required
+from .forms import RecipeForm
 
 
 def recipe_list(request):
@@ -20,12 +22,24 @@ def search_by_ingredient(request):
     query = request.GET.get('q', '').strip()
     recipes = []
     if query:
-        # Находим ингредиенты, содержащие запрос (регистронезависимо)
         ingredients = Ingredient.objects.filter(name__icontains=query)
-        # Находим рецепты, связанные с этими ингредиентами
         recipe_ids = set()
         for ingredient in ingredients:
             for ri in ingredient.recipeingredient_set.all():
                 recipe_ids.add(ri.recipe.id)
         recipes = Recipe.objects.filter(id__in=recipe_ids)
     return render(request, 'recipes/recipe_list.html', {'recipes': recipes, 'search_query': query})
+
+
+@login_required
+def recipe_create(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            recipe = form.save(commit=False)
+            recipe.author = request.user
+            recipe.save()
+            return redirect('recipe_detail', recipe_id=recipe.id)
+    else:
+        form = RecipeForm()
+    return render(request, 'recipes/recipe_form.html', {'form': form})
