@@ -1,4 +1,3 @@
-/* Общие стили */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f9f9f9;
@@ -8,7 +7,6 @@ body {
     padding: 20px;
 }
 
-/* Навигация */
 nav {
     margin-bottom: 25px;
     padding-bottom: 15px;
@@ -25,12 +23,10 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Заголовки */
 h1, h2 {
     color: #222;
 }
 
-/* Карточка рецепта на главной */
 .recipe-grid {
     display: flex;
     flex-wrap: wrap;
@@ -75,7 +71,6 @@ h1, h2 {
     margin-right: 6px;
 }
 
-/* Страница рецепта */
 .recipe-detail h1 {
     margin-bottom: 10px;
 }
@@ -96,7 +91,6 @@ h1, h2 {
     margin-bottom: 6px;
 }
 
-/* Кнопка "назад" */
 .back-link {
     display: inline-block;
     margin-top: 20px;
@@ -108,7 +102,6 @@ h1, h2 {
     text-decoration: underline;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .recipe-grid {
         flex-direction: column;
